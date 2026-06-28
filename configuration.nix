@@ -41,6 +41,9 @@
   services.displayManager.sddm.enable = true;
   services.desktopManager.plasma6.enable = true;
 
+  #Enable the Budgie Desktop Environment
+  services.desktopManager.budgie.enable = true;
+
   # Configure keymap in X11
   services.xserver.xkb = {
     layout = "us";
@@ -81,6 +84,8 @@
   nix.gc.dates = "weekly";
   nix.gc.options = "--delete-older-than 30d";
 
+   #enabling nix search
+   nix.settings.experimental-features = [ "nix-command" "flakes" ];   
 
   # Define a user account. Don't forget to set a password with ‘passwd’.
   users.users."ktec" = {
@@ -239,7 +244,7 @@ programs.zsh = {
    pkgs.oh-my-zsh
    pkgs.zsh-powerlevel10k
    pkgs.zsh-syntax-highlighting
-
+   pkgs.nix-search-cli
    #pkgs.shellcheck
 
    btop
@@ -308,6 +313,7 @@ programs.zsh = {
    alacritty
    wezterm
    foot
+   ghostty
    powerline-fonts
    nerd-fonts.fira-code
    nerd-fonts.jetbrains-mono
@@ -326,6 +332,12 @@ programs.zsh = {
     xclip
     xsel
 
+    #-------NIRI-------------
+    niri
+    swaylock
+    swayidle
+    brightnessctl
+
    /* ── Hyprland Core ────────────────────────────────── */
     hyprland
     hyprlock
@@ -340,7 +352,7 @@ programs.zsh = {
     /* ── Notifications ────────────────────────────────── */
     dunst
     libnotify
-
+    mako
     /* ── Screenshots & Screen Recording ───────────────── */
     grim
     slurp
@@ -448,7 +460,7 @@ programs.zsh = {
     zmap
 
     # DNS enumeration
-    dnsrecon
+    #dnsrecon
     dnsenum
     dig
     host
@@ -550,6 +562,18 @@ programs.zsh = {
  #ventoy
  gparted
 
+  #________Bluetooth Tools_________
+    bluez
+    bluez-tools
+   # bluedevil
+
+ #-------BUDGIE DESKTOP--------------
+  budgie-desktop-with-plugins
+  budgie-control-center
+  budgie-backgrounds
+  budgie-session
+  
+
 
   ];
 
@@ -643,7 +667,16 @@ networking.firewall.allowedTCPPorts = [
       xdg-desktop-portal-hyprland
     ];
   };
-   
+
+#-----------BLUETOOTH--------------------
+   hardware.bluetooth = {
+    enable = true;
+    powerOnBoot = true;  # Auto-enable on startup
+  };
+
+  services.blueman.enable = true;  # Bluetooth manager GUI
+
+
   # Some programs need SUID wrappers, can be configured further or are
   # started in user sessions.
   # programs.mtr.enable = true;
