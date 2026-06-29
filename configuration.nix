@@ -275,16 +275,16 @@ programs.zsh = {
    python3 
    python3.pkgs.pip 
    python3.pkgs.virtualenv
-    python3.pkgs.numpy 
-    python3.pkgs.pandas 
-    python3.pkgs.matplotlib
-    python3.pkgs.requests 
-    python3.pkgs.beautifulsoup4
-    python3.pkgs.flask 
-    python3.pkgs.django 
-    python3.pkgs.fastapi
-    python3.pkgs.sqlalchemy 
-    python3.pkgs.psycopg2
+   python3.pkgs.numpy 
+   python3.pkgs.pandas 
+   python3.pkgs.matplotlib
+   python3.pkgs.requests 
+   python3.pkgs.beautifulsoup4
+   python3.pkgs.flask 
+   python3.pkgs.django 
+   python3.pkgs.fastapi
+   python3.pkgs.sqlalchemy 
+   python3.pkgs.psycopg2
    #Java
    openjdk21
    #Lua
@@ -568,10 +568,10 @@ programs.zsh = {
    # bluedevil
 
  #-------BUDGIE DESKTOP--------------
-  budgie-desktop-with-plugins
+ /* budgie-desktop-with-plugins
   budgie-control-center
   budgie-backgrounds
-  budgie-session
+  budgie-session */
   
 
 
@@ -623,16 +623,16 @@ networking.firewall.allowedTCPPorts = [
   # DANK MATERIAL SHELL (DMS)
   # ─────────────────────────────────────────────────────────
 
-  programs.dms-shell = {
+ /* programs.dms-shell = {
     enable = true;
 
     systemd = {
       enable = false;
       restartIfChanged = true;
-    };
+    }; */
 
     /* Feature toggles */
-    enableSystemMonitoring = true;     # System stats widget
+   /* enableSystemMonitoring = true;     # System stats widget
     enableVPN = true;                  # VPN management
     enableDynamicTheming = true;       # Wallpaper-based colors
     enableAudioWavelength = true;      # Audio visualizer
@@ -641,7 +641,7 @@ networking.firewall.allowedTCPPorts = [
 
     quickshell.package = pkgs.quickshell; # or your custom package
 
-  };
+  }; */
    
 
    
