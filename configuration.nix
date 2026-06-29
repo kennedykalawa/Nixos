@@ -42,7 +42,7 @@
   services.desktopManager.plasma6.enable = true;
 
   #Enable the Budgie Desktop Environment
-  services.desktopManager.budgie.enable = true;
+  #services.desktopManager.budgie.enable = true;
 
   # Configure keymap in X11
   services.xserver.xkb = {
