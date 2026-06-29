@@ -311,8 +311,8 @@ programs.zsh = {
    # ── Terminals & Fonts ────────────────────────────────
    kitty
    alacritty
-   wezterm
-   foot
+   #wezterm
+   #foot
    ghostty
    powerline-fonts
    nerd-fonts.fira-code
@@ -346,11 +346,11 @@ programs.zsh = {
 
    /* ── Bar & Launcher ───────────────────────────────── */
     waybar
-    wofi
-    swww
+    #wofi
+    #swww
 
     /* ── Notifications ────────────────────────────────── */
-    dunst
+    #dunst
     libnotify
     mako
     /* ── Screenshots & Screen Recording ───────────────── */
@@ -359,10 +359,10 @@ programs.zsh = {
     wf-recorder
 
     /* ── Color Picker ────────────────────────────────── */
-    hyprpicker
+    #hyprpicker
 
     /* ── Lockscreen ────────────────────────────────────– */
-    hyprlock
+    #hyprlock
 
     /* ── Polkit (for sudo prompts) ────────────────────– */
     polkit_gnome
@@ -486,8 +486,8 @@ programs.zsh = {
     
 
     # Wireless security
-    aircrack-ng
-    wireshark
+    #aircrack-ng
+    #wireshark
 
     # Malware analysis
     yara
@@ -655,10 +655,10 @@ networking.firewall.allowedTCPPorts = [
     wayland.enable = true;
   }; */ 
 
-  programs.hyprland = {
+ /* programs.hyprland = {
     enable = true;
     xwayland.enable = true;
-  };
+  }; */
 
   xdg.portal = {
     enable = true;
