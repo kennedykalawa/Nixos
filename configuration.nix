@@ -108,67 +108,6 @@
   };
 
   # ─────────────────────────────────────────────────────────
-  # BASH + STARSHIP
-  # ─────────────────────────────────────────────────────────
-
- /* programs.bash = {
-    enable = true;
-    interactiveShellInit = ''
-      # ── Starship Prompt ──────────────────────────────────
-      eval "$(${pkgs.starship}/bin/starship init bash)"
-
-     # ── FZF (fuzzy finder + completion) ──────────────────
-      eval "$(${pkgs.fzf}/bin/fzf --bash)"
-
-        # ── FZF (if installed) ───────────────────────────────
-      if command -v fzf &> /dev/null; then
-        source <(fzf --bash)
-      fi
-
-      # ── Bash Completion ──────────────────────────────────
-      [ -r /etc/bash_completion ] && source /etc/bash_completion
-
-      # ── History ──────────────────────────────────────────
-      HISTSIZE=10000
-      HISTFILESIZE=20000
-      HISTCONTROL=ignoredups:erasedups
-      HISTTIMEFORMAT="%F %T "
-      shopt -s histappend
-      shopt -s checkwinsize
-
-      # ── Auto-completion on TAB ──────────────────────────
-      bind 'set completion-ignore-case on'
-      bind 'set show-all-if-ambiguous on'
-      bind '"\C-n": history-search-forward'
-      bind '"\C-p": history-search-backward'
-
-
-      # ── Aliases ──────────────────────────────────────────
-      alias ls='${pkgs.eza}/bin/eza --icons'
-      alias ll='${pkgs.eza}/bin/eza --icons -la'
-      alias cat='${pkgs.bat}/bin/bat'
-      alias grep='${pkgs.ripgrep}/bin/rg'
-      alias find='${pkgs.fd}/bin/fd'
-
-      # System
-      alias update='sudo nixos-rebuild switch'
-      alias cleanup='nix-collect-garbage -d'
-      alias listgens='sudo nix-env -p /nix/var/nix/profiles/system --list-generations'
-
-      # Git
-      alias gs='git status'
-      alias gc='git commit -m'
-      alias gp='git push'
-      alias gl='git log --oneline --graph'
-
-      # Development
-      alias py='python3'
-      alias d='podman'
-      alias dc='podman-compose'
-    '';
-  };  */
-
-  # ─────────────────────────────────────────────────────────
 # ZSH + OH-MY-ZSH (minimal, working)
 # ─────────────────────────────────────────────────────────
 
