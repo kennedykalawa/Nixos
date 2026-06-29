@@ -245,7 +245,7 @@ programs.zsh = {
    pkgs.zsh-powerlevel10k
    pkgs.zsh-syntax-highlighting
    pkgs.nix-search-cli
-   #pkgs.shellcheck
+   
 
    btop
    fzf ripgrep fd
@@ -259,7 +259,7 @@ programs.zsh = {
    shellcheck
    vim nano
    cava peaclock pipes-rs cmatrix gtop starship cheese  
-  #bitwarden-desktop
+  
 
    # ── Development Tools ────────────────────────────────
     # C/C++ build tools
@@ -300,19 +300,10 @@ programs.zsh = {
    wakatime-cli
    live-server
    browsh
-   #nixd  # Nix LSP
-   #lua-language-server
-   #nodePackages.pyright
-   #nodePackages.typescript-language-server
-   #nodePackages.vscode-langservers-extracted
-   #clang-tools
-   #shellcheck
-
+  
    # ── Terminals & Fonts ────────────────────────────────
    kitty
    alacritty
-   #wezterm
-   #foot
    ghostty
    powerline-fonts
    nerd-fonts.fira-code
@@ -328,7 +319,6 @@ programs.zsh = {
     wofi
     swww
     wl-clipboard
-    #wl-paste
     xclip
     xsel
 
@@ -346,9 +336,7 @@ programs.zsh = {
 
    /* ── Bar & Launcher ───────────────────────────────── */
     waybar
-    #wofi
-    #swww
-
+   
     /* ── Notifications ────────────────────────────────── */
     #dunst
     libnotify
@@ -358,18 +346,9 @@ programs.zsh = {
     slurp
     wf-recorder
 
-    /* ── Color Picker ────────────────────────────────── */
-    #hyprpicker
-
-    /* ── Lockscreen ────────────────────────────────────– */
-    #hyprlock
 
     /* ── Polkit (for sudo prompts) ────────────────────– */
     polkit_gnome
-
-    /* ── Fonts for UI ────────────────────────────────– */
-    nerd-fonts.fira-code
-    nerd-fonts.jetbrains-mono
 
    # ── Media ────────────────────────────────────────────
     ffmpeg
@@ -395,10 +374,9 @@ programs.zsh = {
     slack
     zoom-us
     discord
-    #teams
     whatsie
     tutanota-desktop #mailing
-    smile  #emojis
+    smile  
 
     #-----documentation-------
     libreoffice
@@ -430,8 +408,7 @@ programs.zsh = {
 
     # Vulnerability scanning
     openvas-scanner
-    #nessus
-
+    
     # Traffic analysis & sniffing
     tcpdump
     tshark
@@ -444,8 +421,7 @@ programs.zsh = {
     strace
     ltrace
     cutter #
-    #objdump
-
+    
     # Exploitation & payload generation
     metasploit
 
@@ -456,11 +432,9 @@ programs.zsh = {
     hexdump
 
     # Port scanning & enumeration
-    nmap
     zmap
 
     # DNS enumeration
-    #dnsrecon
     dnsenum
     dig
     host
@@ -484,11 +458,6 @@ programs.zsh = {
     binwalk
     file
     
-
-    # Wireless security
-    #aircrack-ng
-    #wireshark
-
     # Malware analysis
     yara
 
@@ -515,7 +484,6 @@ programs.zsh = {
     sqlite
     postgresql
     redis
-    #mongodb
     dbeaver-bin
     # ── Data Processing ─────────────────────────────────
     duckdb
@@ -528,7 +496,6 @@ programs.zsh = {
     distrobox
 
     # ── Archives & Compression ─────────────────────────
-    #tar
     gzip
     bzip2
     xz
@@ -551,7 +518,6 @@ programs.zsh = {
     gemini-cli
     codex
     github-copilot-cli
-    gemini-cli-bin
     antigravity
     
  #------Code Editors--------
@@ -559,14 +525,12 @@ programs.zsh = {
     zed-editor
 
  #____---DRIVEs EDITORS------
- #ventoy
  gparted
 
   #________Bluetooth Tools_________
     bluez
     bluez-tools
-   # bluedevil
-
+   
  #-------BUDGIE DESKTOP--------------
  /* budgie-desktop-with-plugins
   budgie-control-center
