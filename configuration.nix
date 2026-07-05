@@ -32,7 +32,9 @@
 
   # Select internationalisation properties.
   i18n.defaultLocale = "en_US.UTF-8";
-
+  #------------------------------------------------------------------
+  /*-------------DESKTOP ENVIRONMENTS & WINDOW MANAGERS------------- */
+  #------------------------------------------------------------------
   # Enable the X11 windowing system.
   # You can disable this if you're only using the Wayland session.
   services.xserver.enable = true;
@@ -50,6 +52,32 @@
     variant = "";
   };
 
+
+  # HYPRLAND + WAYLAND + DEPENDENCIES
+  # ─────────────────────────────────────────────────────────
+
+ # services.xserver.enable = true;
+/*services.displayManager.sddm = {
+    enable = true;
+    wayland.enable = true;
+  }; */
+
+ programs.hyprland = {
+    enable = true;
+    xwayland.enable = true;
+  }; 
+
+  xdg.portal = {
+    enable = true;
+    extraPortals = with pkgs; [
+      xdg-desktop-portal-gtk
+      xdg-desktop-portal-hyprland
+    ];
+  };
+
+  #--------------------------------------------------------
+  /*------------------- HARDWARE SETTINGS----------------*/
+  #-------------------------------------------------------
   # Enable CUPS to print documents.
   services.printing.enable = true;
 
@@ -61,7 +89,16 @@
     alsa.enable = true;
     alsa.support32Bit = true;
     pulse.enable = true;
+   };
     
+  #-----------BLUETOOTH--------------------
+   hardware.bluetooth = {
+    enable = true;
+    powerOnBoot = true;  # Auto-enable on startup
+  };
+
+  services.blueman.enable = true;  # Bluetooth manager GUI
+
     /* ── Input devices ────────────────────────────────── */
 #  services.libinput.enable = true;
 
@@ -71,7 +108,7 @@
     # use the example session manager (no others are packaged yet so this is enabled by default,
     # no need to redefine it in your config for now)
     #media-session.enable = true;
-  };
+ # };
 
   # Enable touchpad support (enabled default in most desktopManager).
  #  services.xserver.libinput.enable = true;
@@ -84,9 +121,9 @@
   nix.gc.dates = "weekly";
   nix.gc.options = "--delete-older-than 30d";
 
-   #enabling nix search
-   nix.settings.experimental-features = [ "nix-command" "flakes" ];   
+  nix.settings.experimental-features = [ "nix-command" "flakes" ]; #enabling nix search
 
+  /*--------------USER ACCOUNTS---------------*/
   # Define a user account. Don't forget to set a password with ‘passwd’.
   users.users."ktec" = {
     isNormalUser = true;
@@ -127,20 +164,10 @@ programs.zsh = {
       "fzf"
     ];
     #theme = "robbyrussell";  # Simple default theme (not p10k yet)
-    #theme = "powerlevel10k";
     theme = "agnoster";  /* Simple, clean theme */
   };
 
-
-  #interactiveShellInit = ''
-    /* P10k instant prompt */
-    #if [[ -r "''${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-''${(%):-%n}.zsh" ]]; then
-     # source "''${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-''${(%):-%n}.zsh"
-    #fi
-
-    /* Source p10k config if it exists */
-    #[[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
-  interactiveShellInit = ''
+ interactiveShellInit = ''
 
     # Aliases
     alias ls='${pkgs.eza}/bin/eza --icons'
@@ -167,7 +194,9 @@ programs.zsh = {
 
   #-----Flatpak ------
   services.flatpak.enable = true;
-
+ #------------------------------------------------------
+ /*---------------SYSTEM-WIDE-PACKAGES----------------*/
+ #------------------------------------------------------
   # List packages installed in system profile. To search, run:
   # $ nix search wget
   environment.systemPackages = with pkgs; [
@@ -198,9 +227,7 @@ programs.zsh = {
    shellcheck
    vim nano
    cava peaclock pipes-rs cmatrix gtop starship cheese  
-  
-
-   # ── Development Tools ────────────────────────────────
+ # ── Development Tools ────────────────────────────────
     # C/C++ build tools
    gcc clang  cmake gnumake
    pkg-config autoconf automake llvm libtool
@@ -233,22 +260,19 @@ programs.zsh = {
   # Build essentials
     binutils gdb valgrind
     ninja meson
-
-   # ── Neovim ──────────────────────────────────────────
+  # ── Neovim ──────────────────────────────────────────
    neovim
    wakatime-cli
    live-server
    browsh
-  
-   # ── Terminals & Fonts ────────────────────────────────
+  # ── Terminals & Fonts ────────────────────────────────
    kitty
    alacritty
    ghostty
    powerline-fonts
    nerd-fonts.fira-code
    nerd-fonts.jetbrains-mono
-
-    # ── Wayland & Display ────────────────────────────────
+  # ── Wayland & Display ────────────────────────────────
     wayland
     wayland-protocols
     libxkbcommon
@@ -260,36 +284,29 @@ programs.zsh = {
     wl-clipboard
     xclip
     xsel
-
-    #-------NIRI-------------
+    pamixer
+  #-------NIRI-------------
     niri
     swaylock
     swayidle
     brightnessctl
-
-   /* ── Hyprland Core ────────────────────────────────── */
+  /* ── Hyprland Core ────────────────────────────────── */
     hyprland
     hyprlock
     hypridle
     hyprpicker
-
-   /* ── Bar & Launcher ───────────────────────────────── */
+  /* ── Bar & Launcher ───────────────────────────────── */
     waybar
-   
-    /* ── Notifications ────────────────────────────────── */
-    #dunst
-    libnotify
-    mako
+  /* ── Notifications ────────────────────────────────── */
+      libnotify
+    #mako
     /* ── Screenshots & Screen Recording ───────────────── */
     grim
     slurp
     wf-recorder
-
-
-    /* ── Polkit (for sudo prompts) ────────────────────– */
+  /* ── Polkit (for sudo prompts) ────────────────────– */
     polkit_gnome
-
-   # ── Media ────────────────────────────────────────────
+  # ── Media ────────────────────────────────────────────
     ffmpeg
     imagemagick
     mpv
@@ -298,16 +315,14 @@ programs.zsh = {
     alsa-utils
     vlc
     spotify
-
-    #-------Browsers------------
+   #-------Browsers------------
     brave
     tor-browser
     google-chrome
     chromium
     librewolf
     microsoft-edge
-
-    #__________Socials__________
+   #__________Socials__________
     telegram-desktop
     signal-desktop
     slack
@@ -316,7 +331,6 @@ programs.zsh = {
     whatsie
     tutanota-desktop #mailing
     smile  
-
     #-----documentation-------
     libreoffice
     onlyoffice-desktopeditors
@@ -324,9 +338,9 @@ programs.zsh = {
     obsidian
     sleek-todo
 
-      
-     # ── CYBERSECURITY & PENETRATION TESTING ──────────────
-
+  #---------------------------------------------------------
+  /* ── CYBERSECURITY & PENETRATION TESTING ────────────── */
+ #-----------------------------------------------------------
     # Network reconnaissance
     nmap
     masscan
@@ -417,32 +431,27 @@ programs.zsh = {
     whois
     traceroute
     arp-scan
-
-
-   # ── Databases ────────────────────────────────────────
+  # ── Databases ────────────────────────────────────────
     sqlite
     postgresql
     redis
     dbeaver-bin
     # ── Data Processing ─────────────────────────────────
     duckdb
-
-    # ── Container Tools ─────────────────────────────────
+   # ── Container Tools ─────────────────────────────────
     podman
     podman-compose
     containerd
     docker
     distrobox
-
-    # ── Archives & Compression ─────────────────────────
+  # ── Archives & Compression ─────────────────────────
     gzip
     bzip2
     xz
     p7zip
     rar
     unrar
-
-    # ── Utilities ────────────────────────────────────────
+  # ── Utilities ────────────────────────────────────────
     tldr
     man-pages
     man-pages-posix
@@ -451,36 +460,28 @@ programs.zsh = {
     fd
     parallel
     watch
-
   #________AI TOOLS______________
     ollama
     gemini-cli
     codex
     github-copilot-cli
-    antigravity
-    
+   antigravity
  #------Code Editors--------
     vscode
     zed-editor
-
  #____---DRIVEs EDITORS------
  gparted
-
   #________Bluetooth Tools_________
     bluez
     bluez-tools
    
- #-------BUDGIE DESKTOP--------------
- /* budgie-desktop-with-plugins
-  budgie-control-center
-  budgie-backgrounds
-  budgie-session */
-  
-
+ #----------BTRFS Snapshot TOOLS______________
+  snapper
+  btrfs-progs
+#-----------VIRTUALIZATION------------------
+  qemu_full
 
   ];
-
-
 
 
   # ─────────────────────────────────────────────────────────
@@ -496,7 +497,8 @@ programs.zsh = {
     };
     ports = [ 22 ];
   };
-  
+
+ /*------------FIREWALL SETUP-----------------*/
 networking.firewall.enable = true;
 networking.firewall.allowedTCPPorts = [ 
   22 80 443           # SSH, HTTP, HTTPS
@@ -519,6 +521,41 @@ networking.firewall.allowedTCPPorts = [
     enable = true;
     package = pkgs.wireshark;
   };
+
+
+#------------------------------------------------------------
+#--------------BTRFS SNAPSHOTS-------------------------------
+#------------------------------------------------------------
+
+# Enable snapper for automatic snapshots
+services.snapper = {
+  #enable = true;
+  snapshotRootOnBoot = true;
+  
+  configs = {
+    root = {
+      SUBVOLUME = "/";
+      
+      # Snapshot frequency
+      TIMELINE_CREATE = true;
+      TIMELINE_CLEANUP = true;
+      
+      # Hourly
+      TIMELINE_MIN_AGE = 1800;
+      TIMELINE_LIMIT_HOURLY = 10;
+      TIMELINE_LIMIT_DAILY = 7;
+      TIMELINE_LIMIT_WEEKLY = 4;
+      TIMELINE_LIMIT_MONTHLY = 3;
+      
+      # Cleanup
+      CLEANUP_ALGORITHM = "number";
+      NUMBER_MIN_AGE = 1800;
+      NUMBER_LIMIT = 50;
+      NUMBER_LIMIT_IMPORTANT = 10;
+    };
+  };
+};
+
 
 #____________DMS-HYPRLAND____________________________
 #  programs.dms-shell.enable = true;
@@ -548,36 +585,7 @@ networking.firewall.allowedTCPPorts = [
    
 
    
-  # ─────────────────────────────────────────────────────────
-  # HYPRLAND + WAYLAND + DEPENDENCIES
-  # ─────────────────────────────────────────────────────────
 
- # services.xserver.enable = true;
-/*services.displayManager.sddm = {
-    enable = true;
-    wayland.enable = true;
-  }; */ 
-
- /* programs.hyprland = {
-    enable = true;
-    xwayland.enable = true;
-  }; */
-
-  xdg.portal = {
-    enable = true;
-    extraPortals = with pkgs; [
-      xdg-desktop-portal-gtk
-      xdg-desktop-portal-hyprland
-    ];
-  };
-
-#-----------BLUETOOTH--------------------
-   hardware.bluetooth = {
-    enable = true;
-    powerOnBoot = true;  # Auto-enable on startup
-  };
-
-  services.blueman.enable = true;  # Bluetooth manager GUI
 
 
   # Some programs need SUID wrappers, can be configured further or are
