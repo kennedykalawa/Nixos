@@ -528,7 +528,7 @@ networking.firewall.allowedTCPPorts = [
 #------------------------------------------------------------
 
 # Enable snapper for automatic snapshots
-services.snapper = {
+/*services.snapper = {
   #enable = true;
   snapshotRootOnBoot = true;
   
@@ -554,7 +554,7 @@ services.snapper = {
       NUMBER_LIMIT_IMPORTANT = 10;
     };
   };
-};
+};*/
 
 
 #____________DMS-HYPRLAND____________________________
